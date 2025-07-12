@@ -19,7 +19,7 @@ export default function Home() {
       onSplit(self) {
         gsap.from(self.chars, {
           duration: 1,
-          ease: "power1.inOut",
+          ease: "power1.out",
           ...(test ? paramX : paramY),
           autoAlpha: 0,
           stagger: 0.05,

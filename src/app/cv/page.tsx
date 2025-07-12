@@ -1,8 +1,16 @@
 "use client";
 import { useRef } from "react";
 import gsap from "gsap";
+import cvStyles from "./cv.module.css";
 
-const fragments = [1, 2, 3, 4, 5, 6];
+const fragments = [
+  "fragment1",
+  "fragment2",
+  "fragment3",
+  "fragment4",
+  "fragment5",
+  "fragment6",
+];
 
 function getRandomInt(min: number, max: number) {
   min = Math.ceil(min);
@@ -11,19 +19,6 @@ function getRandomInt(min: number, max: number) {
 }
 export default function CvPage() {
   const cvFragmentsRef = useRef<HTMLDivElement[]>([]);
-
-  // useGSAP(() => {
-  //   cvFragmentsRef.current.forEach((fragment) => {
-  //     gsap.to(fragment, {
-  //       x: getRandomInt(-400, 400),
-  //       y: getRandomInt(-400, 400),
-  //       scale: 0.5,
-  //       rotate: getRandomInt(-180, 180),
-  //       duration: 1,
-  //       ease: "power1.inOut",
-  //     });
-  //   });
-  // });
 
   const destroy = () => {
     cvFragmentsRef.current.forEach((fragment) => {
@@ -65,6 +60,7 @@ export default function CvPage() {
       >
         Repair
       </button>
+
       <div className="h-[100vh] w-[100vw] grid place-items-center">
         <div className="absolute w-[600px] max-w-[80%] aspect-595/842">
           {fragments.map((fragment, index) => {
@@ -74,7 +70,7 @@ export default function CvPage() {
                 ref={(node) => {
                   if (node) cvFragmentsRef.current[index] = node;
                 }}
-                className={`cv-fragment fragment-${fragment}`}
+                className={`${cvStyles.cvFragment} ${cvStyles[fragment]}`}
               ></div>
             );
           })}
