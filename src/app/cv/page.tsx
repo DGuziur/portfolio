@@ -1,7 +1,5 @@
 "use client";
 import { useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import styles from "./cv.module.css";
 import gsap from "gsap";
 
 const fragments = [1, 2, 3, 4, 5, 6];
@@ -56,19 +54,19 @@ export default function CvPage() {
   return (
     <>
       <button
-        className="p-3 m-3 bg-black hover:bg-amber-800 text-amber-50 rounded-2xl"
+        className="p-3 m-3 cursor-pointer bg-black hover:bg-amber-800 text-amber-50 rounded-2xl"
         onClick={destroy}
       >
         Destroy
       </button>
       <button
-        className="p-3 bg-black hover:bg-amber-800 text-amber-50 rounded-2xl"
+        className="p-3 cursor-pointer bg-black hover:bg-amber-800 text-amber-50 rounded-xl"
         onClick={repair}
       >
         Repair
       </button>
       <div className="h-[100vh] w-[100vw] grid place-items-center">
-        <div className="absolute w-[600px] h-[900px]">
+        <div className="absolute w-[600px] max-w-[80%] aspect-595/842">
           {fragments.map((fragment, index) => {
             return (
               <div
