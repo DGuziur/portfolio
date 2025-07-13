@@ -18,6 +18,7 @@ function getRandomInt(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 export default function CvPage() {
+  const cvFragmentsContainerRef = useRef<HTMLDivElement>(null);
   const cvFragmentsRef = useRef<HTMLDivElement[]>([]);
 
   const destroy = () => {
@@ -46,6 +47,47 @@ export default function CvPage() {
     });
   };
 
+  const showcase = () => {
+    gsap.set(cvFragmentsContainerRef.current, {
+      transformStyle: "preserve-3d",
+    });
+    gsap.to(cvFragmentsContainerRef.current, {
+      scale: 1.1,
+      boxShadow: "0 30px 60px rgba(0,0,0,0.5)",
+      duration: 0.3,
+      ease: "power2.out",
+    });
+  };
+
+  const handleMouseMove = (e: MouseEvent) => {
+    const rect = cvFragmentsContainerRef.current!.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = (y - centerY) / 20;
+    const rotateY = (centerX - x) / 20;
+
+    gsap.to(cvFragmentsContainerRef.current, {
+      rotateX: rotateX,
+      rotateY: rotateY,
+      duration: 0.1,
+      ease: "power1.out",
+    });
+  };
+
+  const reset = () => {
+    gsap.to(cvFragmentsContainerRef.current, {
+      scale: 1,
+      rotateX: 0,
+      boxShadow: "none",
+      duration: 0.3,
+      ease: "power2.out",
+    });
+  };
+
   return (
     <>
       <button
@@ -60,9 +102,14 @@ export default function CvPage() {
       >
         Repair
       </button>
-
-      <div className="h-[100vh] w-[100vw] grid place-items-center">
-        <div className="absolute w-[600px] max-w-[80%] aspect-595/842">
+      <div className="h-[100vh] w-[100vw] flex justify-center ">
+        <div
+          ref={cvFragmentsContainerRef}
+          className="absolute h-[595px] max-w-[80%] max-h-[80%] aspect-595/842"
+          onMouseOver={(e) => showcase()}
+          onMouseLeave={(e) => reset()}
+          onMouseMove={(e: any) => handleMouseMove(e)}
+        >
           {fragments.map((fragment, index) => {
             return (
               <div
