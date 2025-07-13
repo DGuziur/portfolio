@@ -1,5 +1,6 @@
 "use client";
 import { useRef } from "react";
+import { MouseEvent } from "react";
 import gsap from "gsap";
 import cvStyles from "./cv.module.css";
 
@@ -59,7 +60,7 @@ export default function CvPage() {
     });
   };
 
-  const handleMouseMove = (e: MouseEvent) => {
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     const rect = cvFragmentsContainerRef.current!.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -106,9 +107,9 @@ export default function CvPage() {
         <div
           ref={cvFragmentsContainerRef}
           className="absolute h-[595px] max-w-[80%] max-h-[80%] aspect-595/842"
-          onMouseOver={(e) => showcase()}
-          onMouseLeave={(e) => reset()}
-          onMouseMove={(e: any) => handleMouseMove(e)}
+          onMouseOver={showcase}
+          onMouseLeave={reset}
+          onMouseMove={handleMouseMove}
         >
           {fragments.map((fragment, index) => {
             return (
