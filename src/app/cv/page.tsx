@@ -91,6 +91,10 @@ export default function CvPage() {
     });
   };
 
+  const goToCvPdf = () => {
+    window.open("/CV_Dawid_Guziur_Eng.pdf");
+  };
+
   return (
     <>
       <button
@@ -108,7 +112,8 @@ export default function CvPage() {
       <div className="h-[100vh] w-[100vw] flex justify-center ">
         <div
           ref={cvFragmentsContainerRef}
-          className="absolute h-[595px] max-w-[80%] max-h-[80%] aspect-595/842"
+          className="absolute h-[595px] max-w-[80%] max-h-[80%] aspect-595/842 hover:cursor-pointer"
+          onClick={goToCvPdf}
           onMouseOver={showcase}
           onMouseLeave={reset}
           onMouseMove={handleMouseMove}
