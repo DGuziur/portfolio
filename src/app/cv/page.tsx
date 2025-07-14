@@ -68,12 +68,13 @@ export default function CvPage() {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    const rotateX = (y - centerY) / 20;
-    const rotateY = (centerX - x) / 20;
+    const rotateX = -(y - centerY) / 20;
+    const rotateY = -(centerX - x) / 20;
 
     gsap.to(cvFragmentsContainerRef.current, {
       rotateX: rotateX,
       rotateY: rotateY,
+      transformPerspective: 1000,
       duration: 0.1,
       ease: "power1.out",
     });
@@ -83,6 +84,7 @@ export default function CvPage() {
     gsap.to(cvFragmentsContainerRef.current, {
       scale: 1,
       rotateX: 0,
+      rotateY: 0,
       boxShadow: "none",
       duration: 0.3,
       ease: "power2.out",
