@@ -19,12 +19,17 @@ export default function MainNav() {
         </Link>
       </div>
       <div className="flex justify-end gap-3 w-full">
-        <Link className="hover:opacity-80" href="https://github.com/DGuziur">
+        <Link
+          className="hover:opacity-80"
+          href="https://github.com/DGuziur"
+          target="_blank"
+        >
           <GitHubIcon></GitHubIcon>
         </Link>
         <Link
           className="hover:opacity-80"
           href="https://www.linkedin.com/in/dawid-guziur-b33103324/"
+          target="_blank"
         >
           <LinkedInIcon></LinkedInIcon>
         </Link>
